@@ -23,7 +23,7 @@ public class Carrier {
     // 패널티
     @OneToOne
     @JoinColumn(name = "vocinfo_id")
-    private VocInfo info;
+    private Voc info;
 
     // 패널티 확인여부
     @Enumerated(EnumType.STRING)
