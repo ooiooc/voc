@@ -2,10 +2,7 @@ package com.project.voc.domain;
 
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @Entity
@@ -13,15 +10,28 @@ public class Carrier {
 
     @Id
     @GeneratedValue
+    @Column(name = "carrier_id")
     private Long id;
 
+    // 회사
     @Column(name = "carrier_name")
     private String name;
 
+    // 운송 기사
     private String deliveryMan;
 
-    private String contact;
+    // 패널티
+    @OneToOne
+    @JoinColumn(name = "vocinfo_id")
+    private VocInfo info;
 
+    // 패널티 확인여부
+    @Enumerated(EnumType.STRING)
+    private ConfirmStatus check;
+
+    // 이의제기 여부
+    @Enumerated(EnumType.STRING)
+    private ObjectionStatus objection;
 
 
 

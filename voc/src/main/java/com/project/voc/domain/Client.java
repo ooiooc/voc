@@ -15,10 +15,14 @@ public class Client {
     @GeneratedValue
     private Long id;
 
+    // 고객사명
     @Column(name = "client_name")
     private String name;
 
+    // 담당자
     private String pic;
 
+    // 연락처
     private String contact;
+
 }
