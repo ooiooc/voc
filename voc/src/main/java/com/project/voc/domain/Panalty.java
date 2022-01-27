@@ -24,6 +24,11 @@ public class Panalty {
     @Enumerated(EnumType.STRING)
     private ConfirmStatus check;
 
+    // 패널티 처리 상태
+    @Column(name = "panalty_status")
+    @Enumerated(EnumType.STRING)
+    private PanaltyStatus status;
+
     // 확인여부 등록
     public Panalty setConfirmStatus(Carrier carrier) {
         Panalty panalty= new Panalty();
