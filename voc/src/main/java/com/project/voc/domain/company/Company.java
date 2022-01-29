@@ -1,15 +1,13 @@
 package com.project.voc.domain.company;
 
-import com.project.voc.domain.Type;
+import com.project.voc.domain.Code;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "ctype")
+@DiscriminatorColumn(name = "dtype")
 @Entity
 public abstract class Company {
 
@@ -18,11 +16,10 @@ public abstract class Company {
     @Column(name = "company_id")
     private Long id;
 
+    @Column(name = "company_name")
     private String name;
-    private String pic;
-    private String contact;
 
-    @OneToOne(mappedBy = "company_id")
-    private Type types;
+    @Column(name = "company_type")
+    private String type;
 
 }
