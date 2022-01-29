@@ -14,28 +14,29 @@ import static javax.persistence.FetchType.LAZY;
 @Getter @Setter
 @NoArgsConstructor
 @Entity
-public class Type {
+public class Code {
 
     @Id
     @GeneratedValue
+    @Column(name = "code_id")
     private Long id;
 
     private String name;
 
     @OneToOne
-    @JoinTable(name = "type_company",
-            joinColumns =  @JoinColumn(name = "type_id"),
+    @JoinTable(name = "code_company",
+            joinColumns =  @JoinColumn(name = "code_id"),
             inverseJoinColumns =  @JoinColumn(name = "company_id"))
     private Company companyList;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "parent_id")
-    private Type parent;
+    private Code parent;
 
     @OneToMany(mappedBy = "parent")
-    private List<Type> child = new ArrayList<>();
+    private List<Code> child = new ArrayList<>();
 
-    public void addChildCategory(Type child) {
+    public void addChildCategory(Code child) {
         this.child.add(child);
         child.setParent(this);
     }
