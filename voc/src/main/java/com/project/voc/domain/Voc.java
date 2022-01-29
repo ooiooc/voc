@@ -15,7 +15,7 @@ import static javax.persistence.FetchType.LAZY;
 @Getter @Setter
 @NoArgsConstructor
 @Entity
-public class Voc extends BaseTimeEntity{
+public class Voc extends BaseTimeEntity {
 
     @Id
     @GeneratedValue
@@ -27,6 +27,11 @@ public class Voc extends BaseTimeEntity{
 
     // voc 내용
     private String vocInfo;
+
+    // voc 회사 코드
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "code_id")
+    private Code code;
 
     // 패널티
     @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
@@ -44,7 +49,7 @@ public class Voc extends BaseTimeEntity{
     // voc 등록
     public static Voc createVoc(Panalty panalty, Indemnity indemnity, Code code) {
         Voc voc = new Voc();
-
+        voc.setCode(code);
         voc.setPanalty(panalty);
         voc.setIndemnity(indemnity);
         return voc;
