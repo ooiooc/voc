@@ -50,6 +50,4 @@ public class Voc extends BaseTimeEntity{
         return voc;
     }
 
-
-
 }

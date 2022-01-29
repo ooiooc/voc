@@ -16,6 +16,7 @@ import static javax.persistence.FetchType.LAZY;
 @Getter
 @Setter
 @NoArgsConstructor
+@DiscriminatorValue("client")
 @Entity
 public class Client extends Company{
 
@@ -29,9 +30,11 @@ public class Client extends Company{
     private String name;
 
     // 담당자
+    @Column(name = "client_pic")
     private String pic;
 
     // 연락처
+    @Column(name = "client_contact")
     private String contact;
 
     // 배상정보
