@@ -33,10 +33,13 @@ public class Code {
     @JoinColumn(name = "parent_id")
     private Code parent;
 
-    @OneToMany(mappedBy = "parent")
+    @OneToMany(mappedBy = "parent", fetch = LAZY)
     private List<Code> child = new ArrayList<>();
 
-    public void addChildCategory(Code child) {
+    @OneToMany(mappedBy = "voc", fetch = LAZY)
+    private List<Voc> vocList;
+
+    public void addChildCode(Code child) {
         this.child.add(child);
         child.setParent(this);
     }
