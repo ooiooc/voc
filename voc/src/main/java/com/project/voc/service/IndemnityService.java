@@ -1,11 +1,15 @@
 package com.project.voc.service;
 
 import com.project.voc.domain.Indemnity;
+import com.project.voc.dto.IndemnityRequestDto;
+import com.project.voc.dto.IndemnityResponseDto;
 import com.project.voc.repository.IndemnityRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -16,7 +20,9 @@ public class IndemnityService {
 
     // 배상정보 등록
     @Transactional
-    public Indemnity saveIndemnity(Indemnity indemnity) {
+    public Indemnity saveIndemnity(IndemnityRequestDto requestDto) throws EntityNotFoundException {
+        Indemnity indemnity = new Indemnity();
+        BeanUtils.copyProperties(indemnity, requestDto);
         indemnityRepository.save(indemnity);
         return indemnity;
     }
