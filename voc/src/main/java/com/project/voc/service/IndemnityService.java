@@ -21,6 +21,7 @@ public class IndemnityService {
     }
 
     // 배상 목록 조회
+    @Transactional(readOnly = true)
     public List<Indemnity> findItem() {
         return indemnityRepository.findAll();
     }

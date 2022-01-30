@@ -49,6 +49,7 @@ public class VocService {
     }
 
     // VOC 목록 조회
+    @Transactional(readOnly = true)
     public List<Voc> findVocList() {
         return vocRepository.findAll();
     }
