@@ -1,5 +1,6 @@
 package com.project.voc.domain;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -15,10 +16,12 @@ import java.time.LocalDateTime;
 public abstract class BaseTimeEntity {
 
     // 생성일
+    @ApiModelProperty(value = "등록일")
     @CreatedDate
     private LocalDateTime createdAt;
 
     // 수정일
+    @ApiModelProperty(value = "수정일")
     @LastModifiedDate
     private LocalDateTime modifiedAt;
 

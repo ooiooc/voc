@@ -1,6 +1,8 @@
 package com.project.voc.controller;
 
+import com.project.voc.domain.Indemnity;
 import com.project.voc.domain.Voc;
+import com.project.voc.dto.VocResponseDto;
 import com.project.voc.service.VocService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -20,8 +22,9 @@ public class VocController {
     // VOC 목록 조회
     @ApiOperation(value = "VOC 목록 조회")
     @GetMapping("/api/voc")
-    public List<Voc> vocList() throws Exception {
-        return vocService.findVocList();
+    public ResponseEntity<List<VocResponseDto>> getVocList() throws Exception {
+        List<VocResponseDto> vocList = vocService.findVocList();
+        return ResponseEntity.ok().body(vocList);
     }
 
     // VOC 등록
