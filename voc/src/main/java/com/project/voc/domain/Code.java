@@ -1,6 +1,7 @@
 package com.project.voc.domain;
 
 import com.project.voc.domain.company.Company;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,9 +19,11 @@ public class Code {
 
     @Id
     @GeneratedValue
+    @ApiModelProperty(value = "회사 분류")
     @Column(name = "code_id")
     private Long id;
 
+    @ApiModelProperty(value = "회사 코드")
     private String name;
 
     @OneToOne
@@ -36,12 +39,11 @@ public class Code {
     @OneToMany(mappedBy = "parent", fetch = LAZY)
     private List<Code> child = new ArrayList<>();
 
-    @OneToMany(mappedBy = "voc", fetch = LAZY)
-    private List<Voc> vocList;
-
     public void addChildCode(Code child) {
         this.child.add(child);
         child.setParent(this);
     }
+
+
 
 }
