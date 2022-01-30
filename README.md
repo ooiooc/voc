@@ -7,7 +7,5 @@ JDK : 11
 
 Spring : Spring Boot 2.6.3 + Gradle
 
-Swagger 3.0
-
-Swagger
+Swagger docs
 http://localhost:8099/swagger-ui/index.html
