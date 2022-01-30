@@ -1,6 +1,7 @@
 package com.project.voc.domain;
 
-import lombok.Builder;
+import com.project.voc.domain.company.Company;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,19 +20,22 @@ public class Voc extends BaseTimeEntity {
 
     @Id
     @GeneratedValue
+    @ApiModelProperty(value = "VOC id")
     @Column(name = "voc_id")
     private Long id;
 
-    // 귀책 당사자
+    // 귀책 대상자
+    @ApiModelProperty(value = "귀책 대상자명")
     private String name;
 
-    // voc 내용
+    // VOC 내용
+    @ApiModelProperty(value = "귀책 내용")
     private String vocInfo;
 
-    // voc 회사 코드
+    // VOC 회사 코드
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "code_id")
-    private Code code;
+    @JoinColumn(name = "company_id")
+    private Company company;
 
     // 패널티
     @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
@@ -43,13 +47,11 @@ public class Voc extends BaseTimeEntity {
     @JoinColumn(name = "indemnity_id")
     private Indemnity indemnity;
 
-    // 연관관계
-
-
     // voc 등록
-    public static Voc createVoc(Panalty panalty, Indemnity indemnity, Code code) {
+    public static Voc createVoc(Panalty panalty, Indemnity indemnity,
+                                Company company) {
         Voc voc = new Voc();
-        voc.setCode(code);
+        voc.setCompany(company);
         voc.setPanalty(panalty);
         voc.setIndemnity(indemnity);
         return voc;

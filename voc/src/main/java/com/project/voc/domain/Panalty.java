@@ -1,6 +1,7 @@
 package com.project.voc.domain;
 
 import com.project.voc.domain.company.Carrier;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,48 +10,57 @@ import javax.persistence.*;
 
 import static javax.persistence.FetchType.*;
 
+@Getter @Setter
 @NoArgsConstructor
-@Getter
-@Setter
 @Entity
 public class Panalty extends BaseTimeEntity{
 
     @Id
     @GeneratedValue
+    @ApiModelProperty(value = "패널티 id")
+    @Column(name = "panalty_id")
     private Long id;
 
     // 패널티
-    private String cost;
+    @ApiModelProperty(value = "패널티 청구내용")
+    private String panaltyInfo;
 
     // 패널티 확인여부
+    @ApiModelProperty(value = "패널티 확인 여부", notes = "패널티 확인 완료 - read / 패널티 미확인 - uncheck")
     @Enumerated(EnumType.STRING)
-    private ConfirmStatus check;
+    private ConfirmStatus confirmStatus;
 
     // 패널티 처리상태
-    //@Column(name = "panalty_status")
+    @ApiModelProperty(value = "패널티 처리 상태", notes = "패널티 처리 대기 - waiting / 패널티 처리완료 - complete")
     @Enumerated(EnumType.STRING)
-    private PanaltyStatus status; // waiting, complete;
+    private PanaltyStatus panaltyStatus; // waiting, complete;
 
     // 이의제기
+    @ApiModelProperty(value = "이의제기 여부", notes = "귀책 인정 - accept / 귀책 불인정 - reject")
     @Enumerated(EnumType.STRING)
     private ObjectionStatus objectionStatus;
 
-    @OneToOne(mappedBy = "voc", fetch = LAZY)
+    // VOC
+    @OneToOne(mappedBy = "panalty", fetch = LAZY)
     private Voc voc;
 
-    @ManyToOne
-    @JoinColumn(name = "carrier")
+    // carrier
+    @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "carrier_id")
     private Carrier carrier;
 
-    // 패널티 발급
-    public Panalty createPanalty(Carrier carrier, String cost) {
+    // 패널티 등록
+    public Panalty createPanalty(Carrier carrier, String panaltyInfo) {
         Panalty panalty= new Panalty();
         panalty.setCarrier(carrier);
-        panalty.setCost(cost);
+        panalty.setPanaltyInfo(panaltyInfo);
         return panalty;
     }
 
-    // 패널티
-
+    // 패널티 확인여부 등록
+    public void panaltyCheck() {
+        // 확인 여부 read 설정
+        this.confirmStatus = ConfirmStatus.READ;
+    }
 
 }
