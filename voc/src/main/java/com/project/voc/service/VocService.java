@@ -25,7 +25,7 @@ public class VocService {
 
     // VOC 등록
     @Transactional
-    public Long newVoc(Long panaltyId, Long indemnityId, Long companyId) {
+    public Voc saveVoc(Long panaltyId, Long indemnityId, Long companyId) {
 
         // 귀책사 조회
         Company company = companyRepository.findOne(companyId);
@@ -45,7 +45,7 @@ public class VocService {
         // VOC 저장
         vocRepository.save(voc);
 
-        return voc.getId();
+        return voc;
     }
 
     // VOC 목록 조회

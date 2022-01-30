@@ -16,13 +16,14 @@ public class IndemnityService {
 
     // 배상정보 등록
     @Transactional
-    public void saveIndemnity(Indemnity indemnity) {
+    public Indemnity saveIndemnity(Indemnity indemnity) {
         indemnityRepository.save(indemnity);
+        return indemnity;
     }
 
     // 배상 목록 조회
     @Transactional(readOnly = true)
-    public List<Indemnity> findItem() {
+    public List<Indemnity> findList() {
         return indemnityRepository.findAll();
     }
 
