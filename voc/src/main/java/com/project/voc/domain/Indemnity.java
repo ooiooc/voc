@@ -2,6 +2,7 @@ package com.project.voc.domain;
 
 import com.project.voc.domain.company.Carrier;
 import com.project.voc.domain.company.Client;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,21 +11,23 @@ import javax.persistence.*;
 
 import static javax.persistence.FetchType.LAZY;
 
-@Getter
-@Setter
+@Getter @Setter
 @NoArgsConstructor
 @Entity
 public class Indemnity extends BaseTimeEntity {
 
     @Id
     @GeneratedValue
+    @ApiModelProperty(value = "배상 id")
     @Column(name = "indemnity_id")
     private Long id;
 
     // 배상 금액
+    @ApiModelProperty(value = "배상금액")
     private String cost;
 
     // 운송회사
+    @ApiModelProperty(value = "배상금액")
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "carrier_id")
     private Carrier carrier;
@@ -49,7 +52,7 @@ public class Indemnity extends BaseTimeEntity {
         Indemnity indemnity = new Indemnity();
 
         if(panalty.getObjectionStatus() == ObjectionStatus.ACCEPT
-                && panalty.getCheck() == ConfirmStatus.READ) {
+                && panalty.getConfirmStatus() == ConfirmStatus.READ) {
             indemnity.setVoc(voc);
             indemnity.setCarrier(carrier);
             indemnity.setCost(cost);
