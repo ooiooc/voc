@@ -14,7 +14,7 @@ import static javax.persistence.FetchType.LAZY;
 @Getter @Setter
 @NoArgsConstructor
 @Entity
-public class Indemnity extends BaseTimeEntity {
+public class Indemnity extends BaseEntity {
 
     @Id
     @GeneratedValue
@@ -24,7 +24,7 @@ public class Indemnity extends BaseTimeEntity {
 
     // 배상 금액
     @ApiModelProperty(value = "배상금액")
-    private String cost;
+    private int cost;
 
     // 운송회사
     @ApiModelProperty(value = "배상금액")
@@ -48,7 +48,7 @@ public class Indemnity extends BaseTimeEntity {
 
     // 운송사 기사 배상정보 등록
     // 이의제기 없으면(accept) -> 배상정보 등록
-    public Indemnity createIndemnity (Voc voc, Carrier carrier, Panalty panalty, String cost) {
+    public Indemnity createIndemnity (Voc voc, Carrier carrier, Panalty panalty, int cost) {
         Indemnity indemnity = new Indemnity();
 
         if(panalty.getObjectionStatus() == ObjectionStatus.ACCEPT
