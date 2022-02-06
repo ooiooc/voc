@@ -1,5 +1,6 @@
 package com.project.voc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.voc.domain.company.Carrier;
 import com.project.voc.domain.company.Client;
 import io.swagger.annotations.ApiModelProperty;
@@ -38,6 +39,7 @@ public class Indemnity extends BaseEntity {
     private Client client;
 
     // VOC 정보
+    @JsonIgnore
     @OneToOne(mappedBy = "indemnity", fetch = LAZY)
     private Voc voc;
 

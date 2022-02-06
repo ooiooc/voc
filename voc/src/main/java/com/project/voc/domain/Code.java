@@ -1,5 +1,6 @@
 package com.project.voc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.voc.domain.company.Company;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -36,6 +37,7 @@ public class Code {
     @JoinColumn(name = "parent_id")
     private Code parent;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "parent")
     private List<Code> child = new ArrayList<>();
 

@@ -1,18 +1,17 @@
 package com.project.voc.domain.company;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.voc.domain.Indemnity;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import javax.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.persistence.FetchType.LAZY;
 
 @Getter @Setter
 @NoArgsConstructor
@@ -36,6 +35,7 @@ public class Client extends Company{
     private String contact;
 
     // 배상정보
+    @JsonIgnore
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Indemnity> indemnities = new ArrayList<>();
 

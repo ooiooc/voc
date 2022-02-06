@@ -1,6 +1,6 @@
 package com.project.voc.domain.company;
 
-import com.project.voc.domain.Code;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.voc.domain.Voc;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -11,7 +11,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.persistence.FetchType.LAZY;
 
 @Getter @Setter
 @NoArgsConstructor
@@ -29,6 +28,7 @@ public abstract class Company {
     @Column(name = "company_type")
     private String type;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private List<Voc> vocList = new ArrayList<>();
 

@@ -1,5 +1,6 @@
 package com.project.voc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.voc.domain.company.Carrier;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -41,6 +42,7 @@ public class Panalty extends BaseEntity {
     private ObjectionStatus objectionStatus;
 
     // VOC
+    @JsonIgnore
     @OneToOne(mappedBy = "panalty", fetch = LAZY)
     private Voc voc;
 

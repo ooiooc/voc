@@ -1,5 +1,6 @@
 package com.project.voc.domain.company;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.voc.domain.Indemnity;
 import com.project.voc.domain.Panalty;
 import com.project.voc.domain.Voc;
@@ -29,10 +30,12 @@ public class Carrier extends Company {
     private String deliveryWorker;
 
     // 패널티
+    @JsonIgnore
     @OneToOne(mappedBy = "carrier")
     private Panalty panalty;
 
     // 배상정보
+    @JsonIgnore
     @OneToMany(mappedBy = "carrier", cascade = CascadeType.ALL)
     private List<Indemnity> indemnities = new ArrayList<>();
 
