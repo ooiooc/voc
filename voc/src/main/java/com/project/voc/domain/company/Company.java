@@ -29,7 +29,7 @@ public abstract class Company {
     @Column(name = "company_type")
     private String type;
 
-    @OneToMany(mappedBy = "company", fetch = LAZY)
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private List<Voc> vocList = new ArrayList<>();
 
 }

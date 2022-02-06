@@ -36,7 +36,7 @@ public class Client extends Company{
     private String contact;
 
     // 배상정보
-    @OneToMany(mappedBy = "client", fetch = LAZY)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Indemnity> indemnities = new ArrayList<>();
 
 }
