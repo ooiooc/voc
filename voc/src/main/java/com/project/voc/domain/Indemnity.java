@@ -17,7 +17,7 @@ import static javax.persistence.FetchType.LAZY;
 public class Indemnity extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(value = "배상 id")
     @Column(name = "indemnity_id")
     private Long id;

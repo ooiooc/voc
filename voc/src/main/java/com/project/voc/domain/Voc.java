@@ -8,18 +8,15 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static javax.persistence.FetchType.LAZY;
 
 @Getter @Setter
 @NoArgsConstructor
 @Entity
-public class Voc extends BaseTimeEntity {
+public class Voc extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(value = "VOC id")
     @Column(name = "voc_id")
     private Long id;

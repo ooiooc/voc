@@ -13,10 +13,10 @@ import static javax.persistence.FetchType.*;
 @Getter @Setter
 @NoArgsConstructor
 @Entity
-public class Panalty extends BaseTimeEntity{
+public class Panalty extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(value = "패널티 id")
     @Column(name = "panalty_id")
     private Long id;
