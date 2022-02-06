@@ -18,7 +18,7 @@ import static javax.persistence.FetchType.LAZY;
 public class Code {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(value = "회사 분류")
     @Column(name = "code_id")
     private Long id;
@@ -26,7 +26,7 @@ public class Code {
     @ApiModelProperty(value = "회사 코드")
     private String name;
 
-    @OneToOne
+    @OneToOne(fetch = LAZY)
     @JoinTable(name = "code_company",
             joinColumns =  @JoinColumn(name = "code_id"),
             inverseJoinColumns =  @JoinColumn(name = "company_id"))
@@ -36,7 +36,7 @@ public class Code {
     @JoinColumn(name = "parent_id")
     private Code parent;
 
-    @OneToMany(mappedBy = "parent", fetch = LAZY)
+    @OneToMany(mappedBy = "parent")
     private List<Code> child = new ArrayList<>();
 
     public void addChildCode(Code child) {
